@@ -1,0 +1,277 @@
+@page "/"
+@rendermode InteractiveServer
+@using System.Diagnostics
+@using KStyleMath
+@inject IJSRuntime JS
+
+<PageTitle>KStyleMath · LaTeX 交互编辑器</PageTitle>
+
+<div class="app @Theme">
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-mark">K</div>
+            <div>
+                <h1>KStyleMath</h1>
+                <p>Pure C# KaTeX renderer · LaTeX → HTML / MathML</p>
+            </div>
+        </div>
+
+        <div class="topbar-actions">
+            <button class="icon-button" @onclick="ToggleTheme" title="切换主题">
+                @(Theme == "dark" ? "☀️" : "🌙")
+            </button>
+            <a class="ghost-link" href="https://github.com/KaTeX/KaTeX" target="_blank" rel="noreferrer">KaTeX</a>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <section class="pane editor-pane">
+            <div class="pane-head">
+                <div>
+                    <span class="pane-title">LaTeX 输入</span>
+                    <span class="pane-sub">实时编译，支持全部 KaTeX 语法</span>
+                </div>
+                <div class="pane-tools">
+                    <span class="stat">@LineCount 行 · @CharCount 字符</span>
+                    <button class="text-button" @onclick="Clear">清空</button>
+                </div>
+            </div>
+
+            <div class="palette">
+                <span class="palette-label">插入</span>
+                @foreach (var item in Palette)
+                {
+                    <button class="palette-button" title="@item.Snippet" @onclick="() => InsertAsync(item.Snippet)">@item.Label</button>
+                }
+            </div>
+
+            <textarea id="latex-editor"
+                      class="editor"
+                      spellcheck="false"
+                      autocomplete="off"
+                      autocapitalize="off"
+                      @bind="Source"
+                      @bind:event="oninput"></textarea>
+
+            <div class="samples">
+                @foreach (var sample in Samples)
+                {
+                    <button class="chip" @onclick="() => LoadSample(sample)">@sample.Name</button>
+                }
+            </div>
+        </section>
+
+        <section class="pane preview-pane">
+            <div class="pane-head">
+                <div>
+                    <span class="pane-title">渲染结果</span>
+                    <span class="pane-sub">@ModeLabel · @LastRenderMs.ToString("0.00") ms</span>
+                </div>
+                <div class="pane-tools">
+                    <label class="switch" title="Display mode">
+                        <input type="checkbox" @bind="DisplayMode" />
+                        <span>Display</span>
+                    </label>
+                    <select class="output-select" @bind="Output">
+                        <option value="htmlAndMathml">HTML + MathML</option>
+                        <option value="html">HTML</option>
+                        <option value="mathml">MathML</option>
+                    </select>
+                    <button class="text-button" @onclick="CopyHtmlAsync">@(Copied ? "已复制" : "复制 HTML")</button>
+                </div>
+            </div>
+
+            @if (Error != null)
+            {
+                <div class="error-banner">
+                    <strong>解析错误</strong>
+                    <span>@Error</span>
+                </div>
+            }
+
+            <div class="preview-scroll">
+                <div class="preview-content">
+                    @if (string.IsNullOrEmpty(Html))
+                    {
+                        <span class="empty-hint">输入 LaTeX 开始渲染…</span>
+                    }
+                    else
+                    {
+                        @((MarkupString)Html)
+                    }
+                </div>
+            </div>
+
+            <details class="html-output">
+                <summary>查看生成的 HTML</summary>
+                <pre><code>@Html</code></pre>
+            </details>
+        </section>
+    </main>
+
+    <footer class="statusbar">
+        <span class="status-dot @(Error == null ? "ok" : "bad")"></span>
+        <span>@(Error == null ? "渲染成功" : "存在解析错误")</span>
+        <span class="divider">·</span>
+        <span>KStyleMath @Katex.Version</span>
+        <span class="divider">·</span>
+        <span class="status-spacer"></span>
+        <span>纯 C# · 无 JavaScript 引擎</span>
+    </footer>
+</div>
+
+@code {
+    private sealed record Sample(string Name, string Tex, bool Display);
+
+    private static readonly Sample[] Samples =
+    {
+        new("二次方程", @"x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}", false),
+        new("积分", @"\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}", true),
+        new("矩阵", @"\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}", true),
+        new("级数", @"\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}", true),
+        new("麦克斯韦", @"\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0\varepsilon_0 \frac{\partial \mathbf{E}}{\partial t}", true),
+        new("对齐", @"\begin{aligned} (a+b)^2 &= a^2 + 2ab + b^2 \\ (a-b)^2 &= a^2 - 2ab + b^2 \end{aligned}", true),
+        new("极限", @"\lim_{x \to 0} \frac{\sin x}{x} = 1", false),
+        new("化学式", @"\mathrm{2H_2 + O_2 \rightarrow 2H_2O}", false),
+    };
+
+    private static readonly (string Label, string Snippet)[] Palette =
+    {
+        ("a/b", @"\frac{}{}"),
+        ("√", @"\sqrt{}"),
+        ("x²", @"^{}"),
+        ("xᵢ", @"_{}"),
+        ("∑", @"\sum_{}^{}"),
+        ("∫", @"\int_{}^{}"),
+        ("α", @"\alpha"),
+        ("β", @"\beta"),
+        ("π", @"\pi"),
+        ("±", @"\pm"),
+        ("≤", @"\le"),
+        ("∞", @"\infty"),
+        ("▦", @"\begin{pmatrix} & \\ & \end{pmatrix}"),
+    };
+
+    private string _source = @"\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}";
+    private string _output = "htmlAndMathml";
+    private bool _displayMode;
+    private bool _copied;
+    private string _theme = "dark";
+
+    public string Source
+    {
+        get => _source;
+        set
+        {
+            if (_source == value) return;
+            _source = value;
+            Recompute();
+        }
+    }
+
+    public string Output
+    {
+        get => _output;
+        set
+        {
+            if (_output == value) return;
+            _output = value;
+            Recompute();
+        }
+    }
+
+    public bool DisplayMode
+    {
+        get => _displayMode;
+        set
+        {
+            if (_displayMode == value) return;
+            _displayMode = value;
+            Recompute();
+        }
+    }
+
+    public string Theme => _theme;
+    public string Html { get; private set; } = "";
+    public string? Error { get; private set; }
+    public double LastRenderMs { get; private set; }
+    public bool Copied => _copied;
+
+    public int CharCount => _source.Length;
+    public int LineCount => string.IsNullOrEmpty(_source) ? 1 : _source.Count(c => c == '\n') + 1;
+    public string ModeLabel => (_displayMode ? "display" : "inline") + " · " + _output;
+
+    protected override void OnInitialized() => Recompute();
+
+    private void Recompute()
+    {
+        var sw = Stopwatch.StartNew();
+        var settings = new Settings
+        {
+            DisplayMode = _displayMode,
+            Output = _output,
+            Strict = "ignore",
+            ThrowOnError = true,
+        };
+
+        try
+        {
+            Html = Katex.RenderToString(_source, settings);
+            Error = null;
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+            try
+            {
+                Html = Katex.RenderToString(_source, new Settings
+                {
+                    DisplayMode = _displayMode,
+                    Output = _output,
+                    Strict = "ignore",
+                    ThrowOnError = false,
+                });
+            }
+            catch
+            {
+                Html = "";
+            }
+        }
+
+        LastRenderMs = sw.Elapsed.TotalMilliseconds;
+    }
+
+    private void LoadSample(Sample sample)
+    {
+        _source = sample.Tex;
+        _displayMode = sample.Display;
+        Recompute();
+    }
+
+    private void Clear()
+    {
+        _source = "";
+        Recompute();
+    }
+
+    private void ToggleTheme() => _theme = _theme == "dark" ? "light" : "dark";
+
+    private async Task InsertAsync(string snippet)
+    {
+        var value = await JS.InvokeAsync<string>("ksInsert", "latex-editor", snippet);
+        if (value != null) Source = value;
+    }
+
+    private async Task CopyHtmlAsync()
+    {
+        if (string.IsNullOrEmpty(Html)) return;
+        await JS.InvokeVoidAsync("ksCopy", Html);
+        _copied = true;
+        StateHasChanged();
+        await Task.Delay(1200);
+        _copied = false;
+        StateHasChanged();
+    }
+}
+
+

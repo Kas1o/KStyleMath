@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build
+        run: dotnet build KStyleMath.sln -c Release
+
+      - name: Validate against KaTeX golden corpus
+        run: |
+          set -e
+          for f in corpus/goldens.json corpus/extra.json corpus/variants.json \
+                   corpus/commands.json corpus/macros.json corpus/api.json; do
+            echo "== $f =="
+            dotnet run --project src/KStyleMath.Cli -c Release --no-build -- "$f"
+          done

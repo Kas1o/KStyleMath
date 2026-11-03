@@ -1,0 +1,284 @@
+[
+ {
+  "name": "macro-user",
+  "tex": "\\RR + \\foo",
+  "settings": {
+   "macros": {
+    "\\RR": "\\mathbb{R}",
+    "\\foo": "x^2"
+   }
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"double-struck\">R</mi><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">\\RR + \\foo</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7722em;vertical-align:-0.0833em;\"></span><span class=\"mord mathbb\">R</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8141em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span></span></span>"
+ },
+ {
+  "name": "macro-recursive",
+  "tex": "\\a",
+  "settings": {
+   "macros": {
+    "\\a": "\\b",
+    "\\b": "\\a"
+   },
+   "maxExpand": 10
+  },
+  "html": "THROW:KaTeX parse error: Too many expansions: infinite loop or need to increase maxExpand setting"
+ },
+ {
+  "name": "macro-expand",
+  "tex": "\\a",
+  "settings": {
+   "macros": {
+    "\\a": "x"
+   }
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\a</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\">x</span></span></span></span>"
+ },
+ {
+  "name": "trust-href",
+  "tex": "\\href{https://example.com/a?b=1}{x}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi href=\"https://example.com/a?b=1\">x</mi></mrow><annotation encoding=\"application/x-tex\">\\href{https://example.com/a?b=1}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><a href=\"https://example.com/a?b=1\"><span class=\"mord mathnormal\">x</span></a></span></span></span>"
+ },
+ {
+  "name": "untrust-href",
+  "tex": "\\href{javascript:alert(1)}{x}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi href=\"javascript:alert(1)\">x</mi></mrow><annotation encoding=\"application/x-tex\">\\href{javascript:alert(1)}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><a href=\"javascript:alert(1)\"><span class=\"mord mathnormal\">x</span></a></span></span></span>"
+ },
+ {
+  "name": "notrust-href",
+  "tex": "\\href{https://example.com}{x}",
+  "settings": {
+   "trust": false
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mstyle mathcolor=\"#cc0000\"><mtext>\\href</mtext></mstyle></mrow><annotation encoding=\"application/x-tex\">\\href{https://example.com}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord text\" style=\"color:#cc0000;\"><span class=\"mord\" style=\"color:#cc0000;\">\\href</span></span></span></span></span>"
+ },
+ {
+  "name": "trust-url",
+  "tex": "\\url{https://example.com/a_b}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext mathvariant=\"monospace\" href=\"https://example.com/a_b\">https://example.com/a_b</mtext></mrow><annotation encoding=\"application/x-tex\">\\url{https://example.com/a_b}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9167em;vertical-align:-0.2222em;\"></span><a href=\"https://example.com/a_b\"><span class=\"mord text\"><span class=\"mord texttt\">https://example.com/a_b</span></span></a></span></span></span>"
+ },
+ {
+  "name": "trust-htmlclass",
+  "tex": "\\htmlClass{abc}{x}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\htmlClass{abc}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"enclosing abc\"><span class=\"mord mathnormal\">x</span></span></span></span></span>"
+ },
+ {
+  "name": "trust-htmlid",
+  "tex": "\\htmlId{abc}{x}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\htmlId{abc}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"enclosing\" id=\"abc\"><span class=\"mord mathnormal\">x</span></span></span></span></span>"
+ },
+ {
+  "name": "trust-htmlstyle",
+  "tex": "\\htmlStyle{color:red}{x}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\htmlStyle{color:red}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"enclosing\" style=\"color:red\"><span class=\"mord mathnormal\">x</span></span></span></span></span>"
+ },
+ {
+  "name": "trust-htmldata",
+  "tex": "\\htmlData{a=1,b=2}{x}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\htmlData{a=1,b=2}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"enclosing\" data-a=\"1\" data-b=\"2\"><span class=\"mord mathnormal\">x</span></span></span></span></span>"
+ },
+ {
+  "name": "notrust-htmlclass",
+  "tex": "\\htmlClass{abc}{x}",
+  "settings": {
+   "trust": false
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mstyle mathcolor=\"#cc0000\"><mtext>\\htmlClass</mtext></mstyle></mrow><annotation encoding=\"application/x-tex\">\\htmlClass{abc}{x}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord text\" style=\"color:#cc0000;\"><span class=\"mord\" style=\"color:#cc0000;\">\\htmlClass</span></span></span></span></span>"
+ },
+ {
+  "name": "includegraphics",
+  "tex": "\\includegraphics[height=2em]{a.png}",
+  "settings": {
+   "trust": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mglyph alt=\"a\" height=\"2em\" src=\"a.png\"></mglyph></mrow><annotation encoding=\"application/x-tex\">\\includegraphics[height=2em]{a.png}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2em;\"></span><img src=\"a.png\" alt=\"a\" style=\"height:2em;\"'/></span></span></span>"
+ },
+ {
+  "name": "color-text",
+  "tex": "\\color{red} x",
+  "settings": {
+   "colorIsTextColor": false
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mstyle mathcolor=\"red\"><mi>x</mi></mstyle></mrow><annotation encoding=\"application/x-tex\">\\color{red} x</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\" style=\"color:red;\">x</span></span></span></span>"
+ },
+ {
+  "name": "color-text-2",
+  "tex": "\\color{red} x",
+  "settings": {
+   "colorIsTextColor": true
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mstyle mathcolor=\"red\"><mi>x</mi></mstyle></mrow><annotation encoding=\"application/x-tex\">\\color{red} x</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\" style=\"color:red;\">x</span></span></span></span>"
+ },
+ {
+  "name": "leqno",
+  "tex": "\\tag{1} x",
+  "settings": {
+   "displayMode": true,
+   "leqno": true
+  },
+  "html": "<span class=\"katex-display leqno\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mtable width=\"100%\"><mtr><mtd width=\"50%\"></mtd><mtd><mi>x</mi></mtd><mtd width=\"50%\"></mtd><mtd><mtext>(1)</mtext></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\tag{1} x</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\">x</span></span><span class=\"katex-tag\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord text\"><span class=\"mord\">(</span><span class=\"mord\"><span class=\"mord\">1</span></span><span class=\"mord\">)</span></span></span></span></span></span>"
+ },
+ {
+  "name": "fleqn",
+  "tex": "x",
+  "settings": {
+   "displayMode": true,
+   "fleqn": true
+  },
+  "html": "<span class=\"katex-display fleqn\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">x</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\">x</span></span></span></span></span>"
+ },
+ {
+  "name": "tag-inline",
+  "tex": "x\\tag{1}",
+  "settings": {},
+  "html": "THROW:KaTeX parse error: \\tag works only in display equations"
+ },
+ {
+  "name": "max-size",
+  "tex": "\\rule{100em}{100em}",
+  "settings": {
+   "maxSize": 5
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mpadded height=\"0em\" voffset=\"0em\"><mspace mathbackground=\"black\" width=\"5em\" height=\"5em\"></mspace></mpadded></mrow><annotation encoding=\"application/x-tex\">\\rule{100em}{100em}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:5em;\"></span><span class=\"mord katex-rule\" style=\"border-right-width:5em;border-top-width:5em;bottom:0em;\"></span></span></span></span>"
+ },
+ {
+  "name": "min-rule",
+  "tex": "\\frac{1}{2}",
+  "settings": {
+   "minRuleThickness": 0.1
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac{1}{2}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2022em;vertical-align:-0.3511em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8511em;\"><span style=\"top:-2.6489em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span><span style=\"top:-3.2em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.1em;\"></span></span><span style=\"top:-3.4em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3511em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span></span></span></span>"
+ },
+ {
+  "name": "error-undefined",
+  "tex": "\\notacommand",
+  "settings": {},
+  "html": "THROW:KaTeX parse error: Undefined control sequence: \\notacommand at position 1: \\̲n̲o̲t̲a̲c̲o̲m̲m̲a̲n̲d̲"
+ },
+ {
+  "name": "error-sup",
+  "tex": "x^2^3",
+  "settings": {},
+  "html": "THROW:KaTeX parse error: Double superscript at position 4: x^2^̲3"
+ },
+ {
+  "name": "error-color",
+  "tex": "\\color{not a color}{x}",
+  "settings": {},
+  "html": "THROW:KaTeX parse error: Invalid color: 'not a color' at position 7: \\color{̲n̲o̲t̲ ̲a̲ ̲c̲o̲l̲o̲r̲}̲{x}"
+ },
+ {
+  "name": "error-sqrt",
+  "tex": "\\sqrt",
+  "settings": {},
+  "html": "THROW:KaTeX parse error: Expected group as argument to '\\sqrt' at end of input: \\sqrt"
+ },
+ {
+  "name": "error-env",
+  "tex": "\\begin{nope}x\\end{nope}",
+  "settings": {},
+  "html": "THROW:KaTeX parse error: No such environment: nope at position 7: \\begin{̲n̲o̲p̲e̲}̲x\\end{nope}"
+ },
+ {
+  "name": "error-math",
+  "tex": "x^",
+  "settings": {},
+  "html": "THROW:KaTeX parse error: Expected group after '^' at position 2: x^̲"
+ },
+ {
+  "name": "render-error-false",
+  "tex": "\\notacommand",
+  "settings": {
+   "throwOnError": false
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mstyle mathcolor=\"#cc0000\"><mtext>\\notacommand</mtext></mstyle></mrow><annotation encoding=\"application/x-tex\">\\notacommand</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord text\" style=\"color:#cc0000;\"><span class=\"mord\" style=\"color:#cc0000;\">\\notacommand</span></span></span></span></span>"
+ },
+ {
+  "name": "error-color-custom",
+  "tex": "\\notacommand",
+  "settings": {
+   "throwOnError": false,
+   "errorColor": "#123456"
+  },
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mstyle mathcolor=\"#123456\"><mtext>\\notacommand</mtext></mstyle></mrow><annotation encoding=\"application/x-tex\">\\notacommand</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord text\" style=\"color:#123456;\"><span class=\"mord\" style=\"color:#123456;\">\\notacommand</span></span></span></span></span>"
+ },
+ {
+  "name": "text-mode",
+  "tex": "\\text{hello \\textbf{world}}",
+  "settings": {},
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>hello </mtext><mtext mathvariant=\"bold\">world</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{hello \\textbf{world}}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6944em;\"></span><span class=\"mord text\"><span class=\"mord\">hello </span><span class=\"mord text\"><span class=\"mord textbf\">world</span></span></span></span></span></span>"
+ },
+ {
+  "name": "unicode",
+  "tex": "α + β = γ",
+  "settings": {},
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>α</mi><mo>+</mo><mi>β</mi><mo>=</mo><mi>γ</mi></mrow><annotation encoding=\"application/x-tex\">α + β = γ</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0528em;\">β</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0556em;\">γ</span></span></span></span>"
+ },
+ {
+  "name": "unicode-sup",
+  "tex": "x² + y₁",
+  "settings": {},
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msub><mi>y</mi><mn>1</mn></msub></mrow><annotation encoding=\"application/x-tex\">x² + y₁</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8974em;vertical-align:-0.0833em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">y</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span>"
+ },
+ {
+  "name": "accent-unicode",
+  "tex": "é + ü",
+  "settings": {},
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mover accent=\"true\"><mi>e</mi><mo>ˊ</mo></mover><mo>+</mo><mover accent=\"true\"><mi>u</mi><mo>¨</mo></mover></mrow><annotation encoding=\"application/x-tex\">é + ü</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7778em;vertical-align:-0.0833em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6944em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">e</span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.1944em;\"><span class=\"mord\">ˊ</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6679em;\"></span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6679em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">u</span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">¨</span></span></span></span></span></span></span></span></span></span>"
+ },
+ {
+  "name": "mathchoice",
+  "tex": "\\mathchoice{a}{b}{c}{d}",
+  "settings": {
+   "displayMode": true
+  },
+  "html": "<span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">\\mathchoice{a}{b}{c}{d}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\">a</span></span></span></span></span>"
+ },
+ {
+  "name": "displaystyle",
+  "tex": "\\displaystyle\\sum_{i=1}^n i",
+  "settings": {},
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mstyle scriptlevel=\"0\" displaystyle=\"true\"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>i</mi></mstyle></mrow><annotation encoding=\"application/x-tex\">\\displaystyle\\sum_{i=1}^n i</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.9291em;vertical-align:-1.2777em;\"></span><span class=\"mop op-limits\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.6514em;\"><span style=\"top:-1.8723em;margin-left:0em;\"><span class=\"pstrut\" style=\"height:3.05em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mrel mtight\">=</span><span class=\"mord mtight\">1</span></span></span></span><span style=\"top:-3.05em;\"><span class=\"pstrut\" style=\"height:3.05em;\"></span><span><span class=\"mop op-symbol large-op\">∑</span></span></span><span style=\"top:-4.3em;margin-left:0em;\"><span class=\"pstrut\" style=\"height:3.05em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.2777em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">i</span></span></span></span>"
+ },
+ {
+  "name": "styling-in-text",
+  "tex": "\\text{a $x^2$ b}",
+  "settings": {},
+  "html": "<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>a </mtext><mstyle scriptlevel=\"0\" displaystyle=\"false\"><msup><mi>x</mi><mn>2</mn></msup></mstyle><mtext> b</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{a $x^2$ b}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8141em;\"></span><span class=\"mord text\"><span class=\"mord\">a </span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\"> b</span></span></span></span></span>"
+ },
+ {
+  "name": "operatorname",
+  "tex": "\\operatorname*{arg\\,max}_{x} f(x)",
+  "settings": {
+   "displayMode": true
+  },
+  "html": "<span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><munder><mrow><mi mathvariant=\"normal\">arg max</mi><mo>⁡</mo></mrow><mi>x</mi></munder><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\operatorname*{arg\\,max}_{x} f(x)</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.6444em;vertical-align:-0.8944em;\"></span><span class=\"mop op-limits\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4306em;\"><span style=\"top:-2.2056em;margin-left:0em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span><span class=\"mop\"><span class=\"mord mathrm\" style=\"margin-right:0.0139em;\">arg</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathrm\">max</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8944em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mclose\">)</span></span></span></span></span>"
+ },
+ {
+  "name": "array",
+  "tex": "\\begin{array}{c|c}a&b\\\\c&d\\end{array}",
+  "settings": {
+   "displayMode": true
+  },
+  "html": "<span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mtable rowspacing=\"0.16em\" columnalign=\"center center\" columnlines=\"solid\" columnspacing=\"1em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>a</mi></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>b</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>c</mi></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>d</mi></mstyle></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\begin{array}{c|c}a&amp;b\\\\c&amp;d\\end{array}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.4em;vertical-align:-0.95em;\"></span><span class=\"mord\"><span class=\"mtable\"><span class=\"arraycolsep\" style=\"width:0.5em;\"></span><span class=\"col-align-c\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.45em;\"><span style=\"top:-3.61em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">a</span></span></span><span style=\"top:-2.41em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">c</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.95em;\"><span></span></span></span></span></span><span class=\"arraycolsep\" style=\"width:0.5em;\"></span><span class=\"vertical-separator\" style=\"height:2.4em;border-right-width:0.04em;border-right-style:solid;margin:0 -0.02em;vertical-align:-0.95em;\"></span><span class=\"arraycolsep\" style=\"width:0.5em;\"></span><span class=\"col-align-c\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.45em;\"><span style=\"top:-3.61em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">b</span></span></span><span style=\"top:-2.41em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">d</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.95em;\"><span></span></span></span></span></span><span class=\"arraycolsep\" style=\"width:0.5em;\"></span></span></span></span></span></span></span>"
+ }
+]
