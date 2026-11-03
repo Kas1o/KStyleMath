@@ -1,5 +1,7 @@
 # KStyleMath
 
+[![build](https://github.com/Kas1o/KStyleMath/actions/workflows/build.yml/badge.svg)](https://github.com/Kas1o/KStyleMath/actions/workflows/build.yml)
+
 A pure C# port of [KaTeX](https://github.com/KaTeX/KaTeX) 0.19.1.
 
 KStyleMath is a faithful re-implementation of KaTeX's parser, macro expander,
@@ -107,6 +109,7 @@ KaTeX byte-for-byte:
 - `corpus/macros.json` – 152 `\def`/`\let`/`\newcommand`/environment/function cases
 - `corpus/api.json` – 37 settings/API cases (trust, custom macros, maxExpand,
   tagging, error handling, color modes, …)
+
 
 
 
